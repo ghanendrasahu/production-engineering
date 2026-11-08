@@ -160,6 +160,6 @@ Roll out behind a canary or flag; watch 5xx + p99; rollback = traffic selector f
 ## 24. Further reading and authoritative references
 
 - https://rabbitmq.com/docs/dlx
-- https://aws.amazon.com/blogs/compute/using-amazon-sqs-dead-letter-queues-redrive/
+- https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-dead-letter-queues.html
 
 **Related topics in this library:** `#15 Message Queues`, `#16 Pub/Sub`, `#12 Retries`, `#13 Exponential Backoff`, `#14 Idempotency`, `#62 Alerts`.

@@ -2,6 +2,28 @@
 
 All notable changes to this project are documented here. The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.0] — 2026-11-08
+
+### Added
+
+- **Live example verification**, executed on real infrastructure (no mocks): FastAPI example — startup, `/healthz` `/readyz`, metrics exposition, 422 validation paths, idempotent replay, trace header, graceful shutdown. RabbitMQ stack via Docker — publish 20 jobs (queue drains to 0), failing job dead-lettered after 5 redeliveries (quorum `x-delivery-limit`), malformed message dead-lettered immediately, container logs confirm acks-after-work. AI-agent orchestrator — 9/9 harness checks (budgets, kill switch, approval gates, tool failure, timeout, idempotency)
+- `tests/test_examples.py` (+10 tests) and a new `examples` CI job that runs it
+- CI actions updated to `actions/checkout@v7` / `actions/setup-python@v7` (all Dependabot PRs reviewed against changelogs and merged)
+- Community readiness: contribution categories with labels (`documentation`, `proposal`, `enhancement`, `testing`, `security`, `compatibility`), `docs/discussions.md`, `docs/supported-agents.md` rewritten with per-agent verification levels, README "Use Without an AI Agent", "Security & Trust" and "Community" sections
+- 8 community backlog issues (#11–#18) with labels (`good first issue`, `help wanted`)
+
+### Fixed
+
+- **22 broken external reference URLs** in topic docs (404/wrong host), including an invalid RFC reference for SSE (now → WHATWG HTML SSE spec) — all further-reading links re-verified; only illustrative example hosts remain unreachable by design
+- docker-compose now binds `8000` and `15672` to `127.0.0.1`; AMQP is no longer published to the host
+- Example `Dockerfile` runs the app as a non-root `app` user; `restart: unless-stopped` added
+- Agent orchestrator: per-step LLM timeout was hardcoded at 120s — now injectable via `llm_timeout_s`
+
+### Security
+
+- Full audit re-executed: tracked files (0 hits), all 212 history blobs (0 hits); compose port bindings tightened; example containers non-root
+- INFORMATIONAL: v1.0.1's pre-fix `test_security.py` (blob `736ff86f3b`) contained the fragments `ALL PROJECTS` and `ghanendrasahu2911` (already public in commit author email). Not a credential; current tree has no such literals; history rewrite not required
+
 ## [1.0.1] — 2026-11-08
 
 ### Security

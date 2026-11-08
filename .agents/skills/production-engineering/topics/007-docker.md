@@ -157,6 +157,6 @@ Roll out behind a canary or flag; watch 5xx + p99; rollback = traffic selector f
 ## 24. Further reading and authoritative references
 
 - https://docs.docker.com/build/buildkit/
-- https://docs.docker.com/engine/userguide/best-practices/
+- https://docs.docker.com/
 
 **Related topics in this library:** `#8 Kubernetes`, `#6 CI/CD`, `#106 Helm Charts`, `#107 Build Caching`, `#67 Secrets Management` (never in images), `#104 Infrastructure as Code`.

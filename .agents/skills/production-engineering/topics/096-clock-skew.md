@@ -150,6 +150,6 @@ Protocol/version changes are deploys too: enable H2/H3 at the edge first, verify
 ## 24. Further reading and authoritative references
 
 - https://www.ntp.org/
-- https://research.google/pubs/pub34287/
+- https://research.google/pubs/
 
 **Related topics in this library:** `#33 Leader Election`, `#38 Distributed Locks`, `#95 Network Partitions`, `#96` pairs with `#35 Eventual Consistency` (LWW), `#81 Database Migrations` (timestamp ordering of migrations), `#69 OAuth`/`#70 JWT Rotation`.

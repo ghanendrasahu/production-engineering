@@ -145,7 +145,7 @@ Automate through CI/CD: GitHub Actions (or equivalent) → image by digest → c
 
 ## 24. Further reading and authoritative references
 
-- https://sre.google/sre-book/error-budgets/
+- https://sre.google/sre-book/embracing-risk/
 - https://sre.google/workbook/implementing-slos/
 
 **Related topics in this library:** `#63 SLOs`, `#64 SLIs`, `#62 Alerts`, `#109 Production Incidents`, `#53 Canary Releases`, `#66 Observability`.

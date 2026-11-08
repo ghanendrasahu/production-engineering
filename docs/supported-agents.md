@@ -1,22 +1,35 @@
 # Supported Agents
 
-| Agent | Status | Install | Notes |
-| --- | --- | --- | --- |
-| **OpenCode** (TUI/CLI/desktop) | ✅ First-class | `.agents/skills/` (project) or `~/.config/opencode/skills` (global) | Auto-activates from description; invoke with `@production-engineering` |
-| **Claude Code** (Anthropic CLI) | ✅ Tested layout | `.claude/skills/production-engineering/` or global | Same SKILL.md format; copy the skill directory; `@production-engineering` |
-| **Codex CLI / agents reading `.agents/skills`** | ✅ Compatible | repo root or user skills dir | Follows the emerging `.agents/skills` convention |
-| **Cursor / Windsurf / Cline** | 🟡 Via rules/context | paste relevant topic docs into project rules/context | No native skill system; use reference files + topic docs as context |
-| **ChatGPT / Claude web** | 🟡 Via paste/projects | upload topic files to Projects/GPTs knowledge | No auto-activation; retrieve by hand |
-| **GitHub Copilot** | 🟡 Via context | reference docs in issue/PR context | Best-effort |
+The core knowledge in this library is agent-agnostic Markdown — usable by **no agent at all**. Agent integrations are **optional** conveniences. Here is exactly how each one has been verified, so you can judge confidence yourself.
 
-Status meanings: ✅ first-class convention, installed and discoverable · 🟡 usable as knowledge; agent has no native skill loading.
+## Requirements & Compatibility
 
-## How Skills Are Structured Here (for anyone porting)
+| Agent | Version requirement | Install | Verification level | Notes |
+|---|---|---|---|---|
+| **OpenCode** | V2 (any current) | `.agents/skills/` (project) or `~/.config/opencode/skills` (user) | **Structure + manifest tests pass in CI** | Skill in this repo auto-activates from description; invoke with `@production-engineering` |
+| **Claude Code** | Any current | copy skill dir to `~/.claude/skills/production-engineering/` | **Layout conformance** (SKILL.md + frontmatter + structure) | Not runtime-tested here; report issues |
+| **Codex CLI / generic `.agents/skills` readers** | Agents honoring the convention | clone anywhere; agent finds the skill from cwd upward | **Layout conformance** | |
+| **Cursor / Windsurf / Cline** | Any | paste topic docs into project rules/context | **Manual context only** — no native discovery | Use `docs/sites/`-style context injection |
+| **ChatGPT / Claude web / custom GPTs** | Any | upload topic docs to project knowledge | **Manual** | Works; no auto-retrieval |
+| **GitHub Copilot Chat** | Any | reference docs in issue/PR context | **Manual, best effort** | |
 
-- `.agents/skills/production-engineering/SKILL.md` — manifest: `name`, `description`, instructions, decision framework. ID = directory name (`production-engineering`).
-- `topics/` — one self-contained document per topic. Safe to paste individually into any LLM context.
-- `references/`, `workflows/`, `templates/` — supporting knowledge the agent opens on demand.
+## What "Verified" Means
 
-**Gotchas when porting:** keep the directory name stable (it is the skill ID); keep `SKILL.md` at the root; keep relative links working (`../docs/` etc. assume repo layout; link targets degrade gracefully if flattened).
+"CI structure tests pass" = filename conventions, frontmatter keys, 111 topics, 24-section presence, link resolution inside the repo. It is **not** a guarantee that your agent loads the skill at runtime — that depends on the agent's own skill loader.
 
-Known limitations: skills cannot execute code by themselves — the value is expert context applied at design/review time. If your agent supports tool use (OpenCode/Claude Code do), the agent will run tests and commands per the skill's verification sections.
+## How Skills Are Structured Here (porting guide)
+
+- `SKILL.md` at the skill root carries `name` + `description` — the discovery contract.
+- Skill ID = directory name (`production-engineering`), stable forever.
+- Topic docs are self-contained Markdown with YAML frontmatter — paste any one alone into a context.
+- Relative links assume repo layout; if you flatten the tree, prefer pasting whole topic files over leaf references.
+
+## Known Limitations
+
+- Skills cannot execute code — value is retrieval-time judgment.
+- No agent integration skips the repo's validation or the maintainer's judgment — agent output from this skill is a draft, not doctrine.
+- Announcements for new agents: report your agent + the 3 prompts you tried in [Discussions](https://github.com/ghanendrasahu/production-engineering/discussions) — we'll add it here.
+
+## Install Notes Per Agent
+
+See [installation.md](installation.md) for commands. Nothing in this repo modifies your global agent configuration automatically — copying or registering is **your** step, deliberately.

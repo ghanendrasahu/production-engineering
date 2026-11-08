@@ -150,6 +150,6 @@ Performance changes ship behind A/B: measure p50/p95/p99 and cost before/after o
 ## 24. Further reading and authoritative references
 
 - https://docs.aws.amazon.com/lambda/
-- https://cloud.google.com/run/docs/configurations/container-contract
+- https://cloud.google.com/run/docs
 
 **Related topics in this library:** `#90 Serverless Limits`, `#91 Latency`, `#93 P99 Latency`, `#45 Autoscaling`, `#89 Cold Starts` mitigates `#90 Serverless Limits`.

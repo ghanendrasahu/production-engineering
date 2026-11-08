@@ -148,6 +148,6 @@ IaC changes: plan-in-PR, apply from CI only, state locks required, drift alerts 
 ## 24. Further reading and authoritative references
 
 - https://developer.hashicorp.com/terraform/docs
-- https://tflint.io/docs/
+- https://github.com/terraform-linters/tflint
 
 **Related topics in this library:** `#104 Infrastructure as Code`, `#106 Helm Charts`, `#6 CI/CD`, `#67 Secrets Management`, `#83 Disaster Recovery`, `#108 Dependency Hell` (modules pinning).

@@ -140,6 +140,6 @@ Ship with expand/contract migrations; zero-downtime requires old code on new sch
 ## 24. Further reading and authoritative references
 
 - https://docs.python.org/3/library/gc.html
-- https://docs.oracle.com/en/java/openjdk/
+- https://docs.oracle.com/en/java/
 
 **Related topics in this library:** `#41 Memory Leaks`, `#93 P99 Latency`, `#94 Tail Latency`, `#90 Serverless Limits`, `#58 Monitoring`.

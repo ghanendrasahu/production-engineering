@@ -148,7 +148,7 @@ Automate through CI/CD: GitHub Actions (or equivalent) → image by digest → c
 
 ## 24. Further reading and authoritative references
 
-- https://prometheus.io/docs/alerting/latest/alerting_rules/
-- https://prometheus.io/docs/alerting/latest/api/
+- https://prometheus.io/docs/
+- https://prometheus.io/docs/
 
 **Related topics in this library:** `#58 Monitoring`, `#61 Metrics`, `#63 SLOs`, `#65 Error Budgets`, `#110 On-Call`, `#111 Postmortems`.

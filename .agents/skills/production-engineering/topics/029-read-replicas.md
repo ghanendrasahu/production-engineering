@@ -150,6 +150,6 @@ Ship with expand/contract migrations; zero-downtime requires old code on new sch
 ## 24. Further reading and authoritative references
 
 - https://www.postgresql.org/docs/current/warm-standby.html
-- https://aws.amazon.com/rds/read-replicas/
+- https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/index.html
 
 **Related topics in this library:** `#32 Replication`, `#85 Failover`, `#30 Sharding`, `#34 CAP Theorem`, `#35 Eventual Consistency`, `#45 Autoscaling`.

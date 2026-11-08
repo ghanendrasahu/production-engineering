@@ -154,6 +154,6 @@ Roll out behind a canary or flag; watch 5xx + p99; rollback = traffic selector f
 ## 24. Further reading and authoritative references
 
 - https://developer.mozilla.org/en-US/docs/Web/API/EventSource
-- https://www.rfc-editor.org/rfc/rfc6202
+- https://html.spec.whatwg.org/multipage/server-sent-events.html
 
 **Related topics in this library:** `#22 WebSockets`, `#23 Long Polling`, `#99 HTTP/2 & HTTP/3`, `#91 Latency`, `#11 Timeouts`.

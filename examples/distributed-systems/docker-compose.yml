@@ -1,7 +1,7 @@
 services:
   rabbitmq:
     image: rabbitmq:3-management
-    ports: ["5672:5672", "15672:15672"]
+    ports: ["127.0.0.1:15672:15672"] # management UI, local dev only — AMQP 5672 stays on the internal network
     healthcheck:
       test: rabbitmq-diagnostics -q ping
       interval: 5s
@@ -13,7 +13,7 @@ services:
     command: uvicorn producer:app --host 0.0.0.0 --port 8000
     depends_on:
       rabbitmq: { condition: service_healthy }
-    ports: ["8000:8000"]
+    ports: ["127.0.0.1:8000:8000"]
     restart: unless-stopped
 
   worker:

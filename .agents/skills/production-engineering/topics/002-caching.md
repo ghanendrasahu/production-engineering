@@ -160,6 +160,6 @@ Roll out behind a canary or flag; watch 5xx + p99; rollback = traffic selector f
 ## 24. Further reading and authoritative references
 
 - https://learn.microsoft.com/azure/architecture/patterns/cache-aside
-- https://redis.io/docs/latest/develop/using-tickets/
+- https://redis.io/docs/latest/
 
 **Related topics in this library:** `#2 Caching` pairs with `#50 Cache Invalidation`, `#49 Edge Caching`, `#48 CDN`, `#38 Distributed Locks` (single-flight), `#28 Connection Pooling`, `#44 Backpressure`.

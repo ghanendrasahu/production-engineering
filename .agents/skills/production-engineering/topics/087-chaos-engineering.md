@@ -150,6 +150,6 @@ DR/failover changes must be rehearsed: quarterly game days with measured RTO/RPO
 ## 24. Further reading and authoritative references
 
 - https://en.wikipedia.org/wiki/Chaos_engineering
-- https://chaosmesh.org/docs/
+- https://litmuschaos.io/
 
 **Related topics in this library:** `#83 Disaster Recovery`, `#85 Failover`, `#10 Circuit Breakers`, `#95 Network Partitions`, `#109 Production Incidents`, `#111 Postmortems`.

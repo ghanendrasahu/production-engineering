@@ -155,6 +155,6 @@ Ship with expand/contract migrations; zero-downtime requires old code on new sch
 ## 24. Further reading and authoritative references
 
 - https://www.postgresql.org/docs/current/indexes.html
-- https://www.postgresql.org/docs/current/index-b-tree.html
+- https://www.postgresql.org/docs/current/btree.html
 
 **Related topics in this library:** `#26 Query Optimization`, `#28 Connection Pooling`, `#29 Read Replicas`, `#31 Partitioning`, `#26` tuning and `#81 Database Migrations` (CONCURRENT builds).

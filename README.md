@@ -11,9 +11,7 @@
 [![Latest release](https://img.shields.io/github/v/release/ghanendrasahu/production-engineering)](https://github.com/ghanendrasahu/production-engineering/releases)
 [![Contributors](https://img.shields.io/github/contributors/ghanendrasahu/production-engineering)](https://github.com/ghanendrasahu/production-engineering/graphs/contributors)
 
-An open-source library of **111 production engineering topics** that teaches AI coding agents —
-and the humans directing them — how to build secure, scalable, reliable, observable, and
-maintainable software systems.
+An open-source production engineering knowledge base and reusable agent skill — **111 deep topics** — covering backend systems, reliability, infrastructure, distributed systems and AI engineering. Built for developers and AI coding agents alike.
 
 [**Browse the 111 topics**](#the-111-topics) · [Install](#installation) · [Usage](docs/usage.md) · [Supported agents](docs/supported-agents.md)
 
@@ -298,6 +296,26 @@ Every recommendation is classified before it's made:
 
 Preferring the simplest architecture that meets requirements; no Kubernetes/Kafka/Redis "just in case"; no caching without invalidation; no retries without idempotency; no locks without TTL + fencing. The skill exists to make agents say **less but better**.
 
+## Community
+
+| Channel | Use for |
+|---|---|
+| [Discussions](https://github.com/ghanendrasahu/production-engineering/discussions) | Questions, ideas, show-and-tell, polls — the fastest path to help |
+| [Issues](https://github.com/ghanendrasahu/production-engineering/issues) | Bugs (template provided), documentation corrections, proposals, feature requests |
+| [Discussions → Announcements](https://github.com/ghanendrasahu/production-engineering/discussions/categories/announcements) | Release notes and maintainer updates |
+| [Milestones](https://github.com/ghanendrasahu/production-engineering/milestones) | v1.1.0 → v2.0.0 roadmap |
+
+**Contribution categories** (labels): `documentation` corrections · `proposal` (new topics 112+) · `enhancement` examples · `testing` improvements · `compatibility` (agent integrations) · `security`. Start with `good first issue`; big projects carry `help wanted`. See [CONTRIBUTING.md](CONTRIBUTING.md) and [docs/discussions.md](docs/discussions.md).
+
+## Security & Trust
+
+- **No credentials anywhere** — tree and git history scanned; tests fail CI if a secret pattern ever appears.
+- **Secret scanning + push protection** enabled on this repository; **Dependabot** weekly for Actions and examples; **private vulnerability reporting** enabled.
+- **Least-privilege CI** (`contents: read`), pinned CI dependencies, non-root example containers.
+- **MIT license** — no lock-in, no hidden terms, no data collection. The library runs fully offline.
+- **Verification is public** — every release lists exact validation results ([v1.0.1 release notes](https://github.com/ghanendrasahu/production-engineering/releases/tag/v1.0.1)); re-run them yourself with three commands.
+- To report a vulnerability: [SECURITY.md](SECURITY.md) — never a public issue.
+
 ## Contributing
 
 Contributions welcome — from first-PR documentation fixes to new topic proposals.
@@ -317,15 +335,13 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) · [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.m
 
 See [GitHub Milestones](https://github.com/ghanendrasahu/production-engineering/milestones) and the [Discussions](https://github.com/ghanendrasahu/production-engineering/discussions) planning threads. High level:
 
-- **v1.0.0** — 111 topics, CI validation, OpenCode/Claude Code support (current)
-- **v1.1** — AI-agent integration tests (agent-in-the-loop resolution benchmarks), per-topic "failure story" case studies
-- **v1.2** — Example app expansion (Java/Go/Node ports), framework-specific expansions (Next.js, Django, Spring)
-- **v1.3** — Localization (topics in German, Hindi, Portuguese, Spanish), video walkthroughs
-- **v2.0** — 112+ topics via proposal process (deepened LLM evals, ML platform ops), official catalog listing
+- **v1.1.0** — live example verification (FastAPI + RabbitMQ runs with failure-path tests), all Dependabot PRs reviewed and merged, 22 broken reference URLs fixed, agent compatibility review, community readiness (current)
+- **v1.2** — Agent-in-the-loop resolution benchmarks · per-topic failure case studies · Java/Go example ports · framework expansions (Next.js, Django, Spring)
+- **v2.0** — 112+ topics via proposal process · catalog listings · localization (de, hi, pt, es)
 
 ## Version & Changelog
 
-Current: **v1.0.0** — see [CHANGELOG.md](CHANGELOG.md) and [releases](https://github.com/ghanendrasahu/production-engineering/releases).
+Current: **v1.1.0** — see [CHANGELOG.md](CHANGELOG.md) and [releases](https://github.com/ghanendrasahu/production-engineering/releases).
 
 ## License
 

@@ -140,6 +140,6 @@ Ship with expand/contract migrations; zero-downtime requires old code on new sch
 ## 24. Further reading and authoritative references
 
 - https://www.postgresql.org/docs/current/warm-standby.html
-- https://www.postgresql.org/docs/current/streaming-replication.html
+- https://www.postgresql.org/docs/current/warm-standby.html
 
 **Related topics in this library:** `#29 Read Replicas`, `#85 Failover`, `#33 Leader Election`, `#83 Disaster Recovery`, `#84 Backups`, `#95 Network Partitions`, `#86 Multi-Region Deployment`.

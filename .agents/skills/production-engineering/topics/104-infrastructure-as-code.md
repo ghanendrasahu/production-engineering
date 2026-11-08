@@ -143,6 +143,6 @@ IaC changes: plan-in-PR, apply from CI only, state locks required, drift alerts 
 ## 24. Further reading and authoritative references
 
 - https://developer.hashicorp.com/terraform/docs
-- https://www.terragrunt.dev/docs/
+- https://developer.hashicorp.com/terraform/docs
 
 **Related topics in this library:** `#105 Terraform`, `#106 Helm Charts`, `#6 CI/CD`, `#7 Docker`, `#83 Disaster Recovery`, `#67 Secrets Management`.

@@ -12,35 +12,50 @@ Thank you for helping make production engineering knowledge accessible to every 
 
 ## Ways to Contribute
 
-### Improve an existing topic doc
+Pick a category — each maps to a label on our issue tracker:
+
+| Category | What it means | Label |
+|---|---|---|
+| **Documentation corrections** | Fix wrong/outdated claims in any topic or doc, with sources | `documentation` |
+| **New production engineering topics** | 112+ via proposal only — numbering is forever | `proposal` |
+| **Runnable examples** | Real, tested examples (FastAPI, Postgres, Kafka, LLM pipelines) | `enhancement` |
+| **Testing improvements** | Validation scripts, CI gates, failure-path tests | `testing` |
+| **Agent compatibility** | Verify/adapt the skill for OpenCode, Claude Code, Cursor, Codex | `compatibility` |
+| **Real-world production case studies** | Anonymized incident/migration/scale stories for docs | `documentation` |
+
+Good entry points are labeled `good first issue`. Larger projects are labeled `help wanted`. Check the [issue list](https://github.com/ghanendrasahu/production-engineering/issues).
+
+### Documentation Corrections
 
 1. Fork the repo.
-2. Branch: `git checkout -b improve/<topic-slug>`.
-3. Edit `.agents/skills/production-engineering/topics/<NNN-slug>.md`.
-4. Keep the required structure (see [Skill Architecture](docs/skill-architecture.md)): metadata frontmatter + all applicable sections.
-5. If your change affects claims, update `COVERAGE`/topic index if applicable (`python scripts/generate_topic_index.py`).
-6. Run validation locally (below).
-7. Open a PR using the template.
+2. Branch: `git checkout -b fix/<topic-slug>`.
+3. Edit the topic file under `topics/`.
+4. Cite your source (RFC, official docs, paper) in the PR.
+5. Run the validation commands below; open a PR.
 
-### Report an error
+### New production engineering topics
 
-Open a [Bug report](https://github.com/ghanendrasahu/production-engineering/issues/new?template=bug_report.md) with:
+Open a [New skill proposal](https://github.com/ghanendrasahu/production-engineering/issues/new?template=new_skill_proposal.md) first — no surprise renumbers. Accepted proposals are implemented as 112+.
 
-- The topic file and line, the incorrect claim, a source (RFC/docs/paper) showing correct behavior.
+### Runnable examples
 
-### Propose a new topic
+Examples must be minimal, runnable, and real — an actual app with actual commands. Include a README with exact steps and expected output.
 
-Open a [New skill proposal](https://github.com/ghanendrasahu/production-engineering/issues/new?template=new_skill_proposal.md) answering:
+### Testing improvements
 
-- What problem does it solve? Where does it fit in the numbered scope (or is it out of scope)?
-- Is it a duplicate of an existing topic? (We will usually point you there.)
-- Who maintains it?
+Extend `tests/` or `scripts/`; keep runtime under ~5 seconds; never delete coverage to make CI pass.
 
-New topics go through review: proposal → discussion → design comment → PR. Expect feedback; it makes the library better.
+### Agent compatibility
 
-### Add an example
+Test the skill against your agent; report findings as issues with your agent's version and the 3 prompts you tried. PRs welcome for manifest/setup changes that keep the library agent-independent.
 
-Examples in `examples/` must be minimal, runnable, and real (a real FastAPI app, a real compose file). Include a README with exact commands to run.
+### Production case studies
+
+Anonymize fully (rename services, scrub tenants). Submit as a Discussion first — we decide placement together.
+
+### Anything else
+
+See [SUPPORT.md](SUPPORT.md) for where to ask what.
 
 ## Local Validation (required before PR)
 

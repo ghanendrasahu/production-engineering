@@ -147,6 +147,6 @@ DR/failover changes must be rehearsed: quarterly game days with measured RTO/RPO
 ## 24. Further reading and authoritative references
 
 - https://www.postgresql.org/docs/current/backup.html
-- https://docs.aws.amazon.com/awsbackup/
+- https://docs.aws.amazon.com/aws-backup/
 
 **Related topics in this library:** `#83 Disaster Recovery`, `#72 Encryption at Rest`, `#55 Rollbacks`, `#32 Replication` (replication ≠ backup), `#81 Database Migrations` (backup before DDL).

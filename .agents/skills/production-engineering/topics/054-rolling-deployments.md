@@ -150,6 +150,6 @@ Automate through CI/CD: GitHub Actions (or equivalent) → image by digest → c
 
 ## 24. Further reading and authoritative references
 
-- https://kubernetes.io/docs/tutorials/kubernetes-basics/update/update-app/
+- https://kubernetes.io/docs/tutorials/
 
 **Related topics in this library:** `#57 Liveness & Readiness Probes`, `#55 Rollbacks`, `#52 Blue-Green Deployment`, `#53 Canary Releases`, `#81 Database Migrations`, `#54 Rolling Deployments`.
