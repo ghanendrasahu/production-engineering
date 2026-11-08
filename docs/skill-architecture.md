@@ -2,6 +2,32 @@
 
 How this repository is laid out and why — read this before adding topics or restructuring.
 
+## How a Request Actually Flows
+
+```
+Task arrives ("make checkout resilient")
+        │
+        ▼
+SKILL.md  (activation rules + decision framework
+          CRITICAL / HIGH / MEDIUM / NOT APPLICABLE)
+        │
+        ▼
+Pick 2–5 topic docs via docs/topic-index.md   ← never all 111
+        │
+        ▼
+Progressive depth:
+  topics/NNN-x.md   ← what / when / how / checklist
+  references/*.md   ← mechanism deep dive
+  workflows/*.md    ← task playbook
+  templates/*.md    ← structure for the output artifact
+        │
+        ▼
+Requirements in → recommendation out:
+  "do X because Y, watch for Z, verify with test V, roll out via W"
+```
+
+Every element has one job: activation (SKILL), selection (topic docs), depth (references), procedure (workflows), shape (templates). Nothing does two jobs twice.
+
 ## Directory Map
 
 ```

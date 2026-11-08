@@ -19,7 +19,7 @@ status: stable
 
 ## 2. What it is
 
-The allowed unreliability derived from an SLO (1 − SLO) over the window — e.g., 43.8 min/30d at 99.9% — managed as a resource to spend on risk, not a metric to mourn.
+The allowed unreliability derived from an SLO (1 − SLO) over the window — e.g., 43.2 min/30d at 99.9% — managed as a resource to spend on risk, not a metric to mourn.
 
 ## 3. Why it exists
 

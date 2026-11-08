@@ -220,7 +220,7 @@ All 111 topics, numbered 1–111, grouped by category. Topic IDs are stable fore
 ├── workflows/               # 6 playbooks (new service, readiness, perf, incident, security, architecture)
 └── templates/               # ADR, technical design doc, incident report, readiness checklist
 docs/                        # installation, usage, agents, architecture, topic index, FAQ
-examples/                    # fastapi skeleton, distributed system (RabbitMQ), AI agent orchestrator
+examples/                    # fastapi skeleton, distributed system (RabbitMQ), AI agent orchestrator, DB resilience
 scripts/                     # validate_skills.py · check_topic_coverage.py · generate_topic_index.py
 tests/                       # pytest suite (structure, coverage, metadata)
 .github/                     # CI (validate on push/PR), issue templates, PR template

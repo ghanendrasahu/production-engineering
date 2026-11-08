@@ -166,3 +166,18 @@ def test_dockerfile_runs_non_root():
 def test_python_files_compile():
     for p in EX.rglob("*.py"):
         subprocess.run([sys.executable, "-m", "py_compile", str(p)], check=True)
+
+
+def test_database_resilience_compose_and_demo():
+    compose = (EX / "database-resilience" / "docker-compose.yml").read_text(
+        encoding="utf-8"
+    )
+    assert "127.0.0.1:55432" in compose, "demo port must be localhost-only"
+    assert "0.0.0.0" not in compose
+    assert "pg_isready" in compose
+    src = (EX / "database-resilience" / "resilience_demo.py").read_text(
+        encoding="utf-8"
+    )
+    assert "statement_timeout" in src
+    assert "DeadlockDetected" in src
+    assert "ON CONFLICT DO NOTHING" in src

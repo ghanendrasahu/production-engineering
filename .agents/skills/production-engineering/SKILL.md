@@ -55,7 +55,7 @@ Activate when the task involves ANY of:
 5. **Apply the Decision Framework** (below) before recommending anything.
 6. **Pull the workflow + checklist** for the task from `workflows/` and `templates/`.
 
-Rule: **retrieve narrow, apply deep.** A topic doc unread is a misconception waiting; the whole library is noise. Targeted reads win.
+Rule: **retrieve narrow, apply deep — and never blindly apply all 111 topics to a project.** A topic doc unread is a misconception waiting; the whole library is noise. Targeted reads win.
 
 ## Decision Framework â€” Think Like a Production Engineer
 

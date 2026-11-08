@@ -38,6 +38,9 @@ jobs:
           python -m pip install "pytest>=8,<9"
           pytest tests/ -q
 
+      - name: Agent compatibility check (structural)
+        run: python scripts/agent_compatibility_check.py
+
   examples:
     name: Example validation (FastAPI + agent orchestrator)
     runs-on: ubuntu-latest

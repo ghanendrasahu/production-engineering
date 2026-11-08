@@ -175,7 +175,7 @@ sum by (status) (rate(http_requests_total{route="/checkout"}[5m]))
 
 **Problem:** An unpaged dashboard is decoration; but alert fatigue (crying wolf) makes responders ignore pages — worse than no alerting.
 
-**Internal Working:** Prometheus Alertmanager: rules → alerts fire with labels → grouping (by cluster/service), inhibition (suppress low-sev if high-sev for same target), silencing (maintenance), routing by severity (P1 → PagerDuty phone; P3 → Slack ticket). Multi-window burn-rate alerts for SLOs (fast burn 14.4x 5min+long 14d for precision, slow burn 6x 6h+3d). Every alert links a runbook containing diagnosis and immediate mitigation commands.
+**Internal Working:** Prometheus Alertmanager: rules → alerts fire with labels → grouping (by cluster/service), inhibition (suppress low-sev if high-sev for same target), silencing (maintenance), routing by severity (P1 → PagerDuty phone; P3 → Slack ticket). Multi-window burn-rate alerts for SLOs (page: 14.4x over 1h long / 5m short; page: 6x over 6h long / 30m short; ticket: 1x over 3d long / 6h short). Every alert links a runbook containing diagnosis and immediate mitigation commands.
 
 **Architecture:** Prometheus rules → Alertmanager → route tree → PagerDuty/Opsgenie/Slack; runbook URL in payload; post-incident feedback updates thresholds.
 
@@ -215,7 +215,7 @@ groups:
 
 **Problem:** Without a target, reliability debates are vibes; error budget gives a data-driven policy for balancing velocity vs stability.
 
-**Internal Working:** SLO = objective; SLI = measurement; error budget = 1 − SLO over window (99.9% → 43.8 minutes per 30d). Availability SLI: `good events / valid events`. Latency SLI: % of events under threshold. Rolling 30d math. Policy: when budget burns too fast, freeze features and ship reliability work; when budget healthy, ship aggressively. Multi-burn-rate alerts (`#62`) detect fast/slow consumption. Review SLOs quarterly with business.
+**Internal Working:** SLO = objective; SLI = measurement; error budget = 1 − SLO over window (99.9% → 43.2 minutes per 30d). Availability SLI: `good events / valid events`. Latency SLI: % of events under threshold. Rolling 30d math. Policy: when budget burns too fast, freeze features and ship reliability work; when budget healthy, ship aggressively. Multi-burn-rate alerts (`#62`) detect fast/slow consumption. Review SLOs quarterly with business.
 
 **Architecture:** SLO definitions (SLI + objective + window + owner) living in an SLO platform (Nobl9/Grafana SLO) or as Prometheus recording rules + dashboards; error budget feeds deploy gates.
 
@@ -230,7 +230,7 @@ Weekly review: `error_budget_remaining = SLO - (1 - achieved_SLI)` over 30 days.
 
 **FastAPI Example:** Middleware labels requests; `/slo.json` or Grafana panel shows rolling SLI vs SLO; budget exhausted → CI pipeline blocks feature deploys (gate on remaining budget < 10%).
 
-**Production Example:** API SLO 99.95% over 30 days (≤ 21.9 min bad); November: one bad deploy consumed 60% of budget in 40 minutes; feature freeze invoked; team shipped retry/pool fixes; December budget healthy — velocity resumed. Auditors approved; customers noticed nothing.
+**Production Example:** API SLO 99.95% over 30 days (≤ 21.6 min bad); November: one bad deploy consumed 60% of budget in 40 minutes; feature freeze invoked; team shipped retry/pool fixes; December budget healthy — velocity resumed. Auditors approved; customers noticed nothing.
 
 **Failure Scenarios:** SLO set equal to current best ("99.99% because we once saw it") → impossible, permanent freeze; measuring success by uptime % rather than user-visible errors; SLI includes internal health checks (gaming own SLO); window too short/noisy; no owner; no burn-rate alerts → budget gone before anyone knows; SLO on everything (dilutes focus to 2-4 critical services).
 
@@ -285,7 +285,7 @@ sum(rate(http_request_seconds_bucket{le="0.3",route="/checkout"}[5m])) / sum(rat
 
 ### 65. Error Budgets
 
-**Definition:** The allowed unreliability derived from an SLO (1 − SLO) over the window — e.g., 43.8 min/30d at 99.9% — managed as a resource to spend on risk, not a metric to mourn.
+**Definition:** The allowed unreliability derived from an SLO (1 − SLO) over the window — e.g., 43.2 min/30d at 99.9% — managed as a resource to spend on risk, not a metric to mourn.
 
 **Problem:** "How much change is safe?" has no objective answer without a budget; error budgets turn that argument into policy and end the velocitist-vs-stability stalemate.
 

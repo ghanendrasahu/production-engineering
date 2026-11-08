@@ -31,7 +31,7 @@ Without a target, reliability debates are vibes; error budget gives a data-drive
 
 ## 5. How it works internally
 
-SLO = objective; SLI = measurement; error budget = 1 − SLO over window (99.9% → 43.8 minutes per 30d). Availability SLI: `good events / valid events`. Latency SLI: % of events under threshold. Rolling 30d math. Policy: when budget burns too fast, freeze features and ship reliability work; when budget healthy, ship aggressively. Multi-burn-rate alerts (`#62`) detect fast/slow consumption. Review SLOs quarterly with business.
+SLO = objective; SLI = measurement; error budget = 1 − SLO over window (99.9% → 43.2 minutes per 30d). Availability SLI: `good events / valid events`. Latency SLI: % of events under threshold. Rolling 30d math. Policy: when budget burns too fast, freeze features and ship reliability work; when budget healthy, ship aggressively. Multi-burn-rate alerts (`#62`) detect fast/slow consumption. Review SLOs quarterly with business.
 
 ## 6. Architecture and design principles
 
@@ -60,7 +60,7 @@ Weekly review: `error_budget_remaining = SLO - (1 - achieved_SLI)` over 30 days.
 
 ## 10. Production-grade implementation
 
-**Scenario:** API SLO 99.95% over 30 days (≤ 21.9 min bad); November: one bad deploy consumed 60% of budget in 40 minutes; feature freeze invoked; team shipped retry/pool fixes; December budget healthy — velocity resumed. Auditors approved; customers noticed nothing.
+**Scenario:** API SLO 99.95% over 30 days (≤ 21.6 min bad); November: one bad deploy consumed 60% of budget in 40 minutes; feature freeze invoked; team shipped retry/pool fixes; December budget healthy — velocity resumed. Auditors approved; customers noticed nothing.
 
 **To reach production grade, combine the implementation in section 9 with these non-negotiables:**
 

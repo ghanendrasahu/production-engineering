@@ -74,7 +74,7 @@ All checks must pass. CI runs the same on every PR.
 - Markdown with ATX headings (`#`), reference-style links where URLs are long.
 - Code fences with language tags (`python`, `yaml`, `bash`, `sql`).
 - Sentence case headings; one sentence per line is fine.
-- Numbers must be stated as numbers (`99.9%`, `43.8 min per 30d`), never "very".
+- Numbers must be stated as numbers (`99.9%`, `43.2 min per 30d`), never "very".
 - Absolute claims ("always", "never") require a cited source or are reworded.
 
 ## Review Process

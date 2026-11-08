@@ -31,7 +31,7 @@ An unpaged dashboard is decoration; but alert fatigue (crying wolf) makes respon
 
 ## 5. How it works internally
 
-Prometheus Alertmanager: rules → alerts fire with labels → grouping (by cluster/service), inhibition (suppress low-sev if high-sev for same target), silencing (maintenance), routing by severity (P1 → PagerDuty phone; P3 → Slack ticket). Multi-window burn-rate alerts for SLOs (fast burn 14.4x 5min+long 14d for precision, slow burn 6x 6h+3d). Every alert links a runbook containing diagnosis and immediate mitigation commands.
+Prometheus Alertmanager: rules → alerts fire with labels → grouping (by cluster/service), inhibition (suppress low-sev if high-sev for same target), silencing (maintenance), routing by severity (P1 → PagerDuty phone; P3 → Slack ticket). Multi-window burn-rate alerts for SLOs (page: 14.4x over 1h long / 5m short; page: 6x over 6h long / 30m short; ticket: 1x over 3d long / 6h short). Every alert links a runbook containing diagnosis and immediate mitigation commands.
 
 ## 6. Architecture and design principles
 
