@@ -1,0 +1,27 @@
+cff-version: 1.2.0
+message: "If you use this project, please cite it as below."
+title: "Production Engineering Skills"
+type: software
+authors:
+  - family-names: Sahu
+    given-names: Ghanendra
+    login: ghanendrasahu
+repository-code: "https://github.com/ghanendrasahu/production-engineering"
+url: "https://github.com/ghanendrasahu/production-engineering"
+abstract: >-
+  An open-source collection of 111 production engineering skills designed to
+  help AI coding agents build secure, scalable, reliable, observable, and
+  maintainable software systems. Covers backend architecture, distributed
+  systems, databases, deployment operations, security, reliability,
+  performance, networking, infrastructure, and incident management.
+keywords:
+  - production-engineering
+  - ai-agents
+  - skills
+  - backend
+  - distributed-systems
+  - sre
+  - devops
+license: MIT
+version: 1.0.0
+date-released: "2026-11-08"

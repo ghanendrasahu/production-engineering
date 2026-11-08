@@ -1,0 +1,38 @@
+name: Validate
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Topic coverage + skill structure
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Syntax-check scripts
+        run: |
+          python -m py_compile scripts/*.py
+
+      - name: Topic coverage (111 unique topics, numbering 1..111)
+        run: python scripts/check_topic_coverage.py
+
+      - name: Skill validation (frontmatter, sections, links, secrets scan)
+        run: python scripts/validate_skills.py
+
+      - name: Topic index drift check
+        run: python scripts/generate_topic_index.py --check
+
+      - name: Unit tests
+        run: |
+          python -m pip install --upgrade pip pytest
+          pytest tests/ -q

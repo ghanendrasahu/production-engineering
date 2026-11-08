@@ -1,0 +1,24 @@
+services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports: ["5672:5672", "15672:15672"]
+    healthcheck:
+      test: rabbitmq-diagnostics -q ping
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  producer:
+    build: .
+    command: uvicorn producer:app --host 0.0.0.0 --port 8000
+    depends_on:
+      rabbitmq: { condition: service_healthy }
+    ports: ["8000:8000"]
+
+  worker:
+    build: .
+    command: python worker.py
+    depends_on:
+      rabbitmq: { condition: service_healthy }
+    deploy:
+      replicas: 2

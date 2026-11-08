@@ -1,0 +1,17 @@
+# Auto-detect text files and normalize line endings
+* text=auto
+
+# Force LF for source and docs
+*.py    text eol=lf
+*.md    text eol=lf
+*.yml   text eol=lf
+*.yaml  text eol=lf
+*.cff   text eol=lf
+*.json  text eol=lf
+*.toml  text eol=lf
+
+# Binary
+*.png   binary
+*.jpg   binary
+*.pdf   binary
+*.ico   binary
