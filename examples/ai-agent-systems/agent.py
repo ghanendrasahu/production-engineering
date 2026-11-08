@@ -117,7 +117,11 @@ class ToolExecutor:
 
 
 async def run(
-    task: str, llm: LLMClient, executor: ToolExecutor, budget: Budget | None = None
+    task: str,
+    llm: LLMClient,
+    executor: ToolExecutor,
+    budget: Budget | None = None,
+    llm_timeout_s: float = 120.0,
 ) -> RunState:
     budget = budget or Budget()
     state = RunState(run_id=hashlib.sha256(os.urandom(16)).hexdigest()[:16], task=task)
@@ -125,7 +129,9 @@ async def run(
         if is_killed():
             raise KilledBySwitch("kill switch active")
         budget.check(state)
-        action, tokens, cost = await asyncio.wait_for(llm.decide(state), timeout=120)
+        action, tokens, cost = await asyncio.wait_for(
+            llm.decide(state), timeout=llm_timeout_s
+        )
         state.tokens_used += tokens
         state.cost_usd += cost
         state.steps += 1
