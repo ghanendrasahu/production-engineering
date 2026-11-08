@@ -12,16 +12,16 @@ jobs:
   validate:
     name: Topic coverage + skill structure
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
-      - uses: actions/setup-python@v7
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
         with:
           python-version: "3.12"
 
       - name: Syntax-check scripts
-        run: |
-          python -m py_compile scripts/*.py
+        run: python -m py_compile scripts/*.py
 
       - name: Topic coverage (111 unique topics, numbering 1..111)
         run: python scripts/check_topic_coverage.py
@@ -41,10 +41,11 @@ jobs:
   examples:
     name: Example validation (FastAPI + agent orchestrator)
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
-      - uses: actions/setup-python@v7
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
         with:
           python-version: "3.12"
 
@@ -56,3 +57,64 @@ jobs:
 
       - name: Example tests
         run: pytest tests/test_examples.py -q
+
+  examples-integration:
+    name: RabbitMQ integration (docker compose)
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Start the stack
+        run: |
+          set -euo pipefail
+          cd examples/distributed-systems
+          docker compose up -d --build
+          for i in $(seq 1 60); do
+            if curl -fsS http://127.0.0.1:8000/healthz >/dev/null 2>&1; then
+              echo "producer healthy after ${i}x3s"; exit 0
+            fi
+            sleep 3
+          done
+          echo "producer never became healthy"; exit 1
+
+      - name: Happy path — publish 5 jobs, expect queue to drain
+        run: |
+          set -euo pipefail
+          cd examples/distributed-systems
+          curl -fsS -X POST http://127.0.0.1:8000/enqueue -H 'Content-Type: application/json' -d '{"n": 5}'
+          sleep 6
+          out=$(docker compose exec -T rabbitmq rabbitmqctl list_queues name messages)
+          echo "$out"
+          jobs=$(echo "$out" | awk '$1=="jobs" {print $2}')
+          dlq=$(echo "$out" | awk '$1=="jobs-dlq" {print $2}')
+          [ "$jobs" = "0" ]
+          [ "${dlq:-0}" = "0" ]
+
+      - name: Failure path — failing job lands in DLQ after delivery limit
+        run: |
+          set -euo pipefail
+          cd examples/distributed-systems
+          curl -fsS -X POST http://127.0.0.1:8000/fail
+          for i in $(seq 1 45); do
+            out=$(docker compose exec -T rabbitmq rabbitmqctl list_queues name messages)
+            echo "$out"
+            dlq=$(echo "$out" | awk '$1=="jobs-dlq" {print $2}')
+            if [ "${dlq:-0}" = "1" ]; then
+              echo "DLQ received poisoned message after $i polls"; exit 0
+            fi
+            sleep 2
+          done
+          echo "poisoned message never reached DLQ"; exit 1
+
+      - name: Diagnostics on failure
+        if: failure()
+        run: |
+          cd examples/distributed-systems
+          docker compose logs producer worker rabbitmq || true
+
+      - name: Clean up
+        if: always()
+        run: |
+          cd examples/distributed-systems
+          docker compose down -v || true
