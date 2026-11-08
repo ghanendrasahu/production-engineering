@@ -12,14 +12,22 @@ docker compose up --build
 Then:
 
 ```bash
-# enqueue 100 jobs
-curl -X POST localhost:8000/enqueue -H 'Content-Type: application/json' -d '{"n": 100}'
-# watch the worker process them
+# enqueue 20 jobs (all should be processed within seconds)
+curl -X POST localhost:8000/enqueue -H 'Content-Type: application/json' -d '{"n": 20}'
+
+# watch the worker consume them
 docker compose logs -f worker
-# poison a job: publish a malformed payload directly
+
+# verify the queue drained
+docker compose exec rabbitmq rabbitmqctl list_queues name messages
+
+# simulate a failing job: publishes {"fail": true}; after 5 redeliveries it lands in jobs-dlq
+curl -X POST localhost:8000/fail -H 'Content-Type: application/json'
+docker compose exec rabbitmq rabbitmqctl list_queues name messages
+
+# malformed message: goes straight to the DLQ
 docker compose exec rabbitmq rabbitmqadmin publish routing_key=jobs payload='{bad json'
-# after 5 redeliveries it lands in jobs-dlq — inspect and redrive:
-docker compose exec rabbitmq rabbitmqadmin get queue=jobs-dlq count=5
+docker compose exec rabbitmq rabbitmqctl list_queues name messages
 ```
 
 ## What to note (maps to topics)
