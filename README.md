@@ -32,6 +32,10 @@ trade-offs, and checklists behind real production systems — into **agent-nativ
 retrieved on demand. No fluff, no definition dumps: every topic tells an agent *when* to apply a
 pattern, *when not to*, and *how to verify it worked*.
 
+## Use Without an AI Agent
+
+The core knowledge in this repository is **plain Markdown** and is fully useful without any coding agent: read the topic docs like a reference manual, grep them in an editor, or print them for onboarding. Agent support (OpenCode, Claude Code, Codex, Cursor via context) is strictly **optional** — the repository works offline, has no runtime services, stores no accounts, and depends on nothing on the original author's machine beyond public GitHub.
+
 ## What's Inside
 
 | Guarantee | Detail |

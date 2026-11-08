@@ -1,0 +1,20 @@
+version: 2
+updates:
+  # GitHub Actions
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 5
+
+  # Python (examples + scripts)
+  - package-ecosystem: pip
+    directory: /examples/fastapi
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 5
+  - package-ecosystem: pip
+    directory: /examples/distributed-systems
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 5
