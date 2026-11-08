@@ -22,7 +22,7 @@ All notable changes to this project are documented here. The format is based on 
 ### Security
 
 - Full audit re-executed: tracked files (0 hits), all 212 history blobs (0 hits); compose port bindings tightened; example containers non-root
-- INFORMATIONAL: v1.0.1's pre-fix `test_security.py` (blob `736ff86f3b`) contained the fragments `ALL PROJECTS` and `ghanendrasahu2911` (already public in commit author email). Not a credential; current tree has no such literals; history rewrite not required
+- INFORMATIONAL: the pre-fix `test_security.py` (blob `736ff86f3b`, v1.0.1) contained a generic workspace word and the local-part of the maintainer's public commit email (both already non-secret and public in git metadata). Not a credential; current tree avoids these literals; history rewrite not required
 
 ## [1.0.1] — 2026-11-08
 
