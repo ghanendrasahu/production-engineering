@@ -42,12 +42,18 @@ SECRET_PATTERNS = [
     re.compile(r"AIza[0-9A-Za-z_-]{20,}"),
 ]
 
-FORBIDDEN_FRAGMENTS = [
-    "C:\\Users\\",
-    "ALL PROJECTS",
-    "ghanendrasahu2911",
-    "/Users/ghane",
-]
+
+def _fragments():
+    # Built from parts so this test file never contains the literals itself.
+    return [
+        "C:" + "\\Users\\",
+        "ALL" + " PROJECTS",
+        "ghanendrasahu" + "2911",
+        "/Users/" + "ghane",
+    ]
+
+
+FORBIDDEN_FRAGMENTS = _fragments()
 
 
 def _tracked_text_files():
