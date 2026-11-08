@@ -99,7 +99,7 @@ check(
 skill_text = text + "\n".join(
     f.read_text(encoding="utf-8", errors="ignore") for f in [SKILL_MD]
 )
-for frag in ("C:\\Users\\", "/Users/", "ghanendrasahu2911"):
+for frag in ("C:\\Users\\", "/Users/", "ghanendrasahu" + "2911"):
     check(
         f"no machine-local fragment {frag!r} in skill manifest", frag not in skill_text
     )
