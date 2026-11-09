@@ -2,6 +2,35 @@
 
 All notable changes to this project are documented here. The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.0] — 2026-11-09
+
+### Added
+
+- **CI: live Docker integration job** (`RabbitMQ integration (docker compose)`) — builds the stack, gates on producer health, asserts queues drain on happy path and failing jobs dead-letter after 5 redeliveries; always tears down; diagnostics on failure; 15-minute timeout
+- **Branch protection on `main`** — required checks (`Topic coverage + skill structure`, `Example validation (FastAPI + agent orchestrator)`), 1 approving review + stale review dismissal, force pushes and deletions blocked; admins remain exempt (no lock-out path)
+- **Agent compatibility suite** — `scripts/agent_compatibility_check.py` (17 structural checks; now a CI step); results published in `docs/agent-test-results.md` (OpenCode: runtime-registered in-session; Claude Code/Codex: structurally compatible; others: manual)
+- **Database resilience example** — `examples/database-resilience/`: four live proofs (server-side `statement_timeout`, deadlock-victim retry, `ON CONFLICT DO NOTHING` replay safety, live-connection check), tested end-to-end with PASS on all four
+- **docs** — `docs/troubleshooting.md`, request-flow diagram in `docs/skill-architecture.md`, `docs/localization.md` (i18n investigation), `docs/review-matrix.md` (all 111 topics: structure 111/111, links 111/111, 5 fact corrections applied)
+- Issues updated with results: #14 (review matrix posted, left open for line-by-line work), #15 (localization plan)
+
+### Changed
+
+- **CI: actions pinned to commit SHAs** (checkout v7.0.1, setup-python v7.1.0); `timeout-minutes` on all jobs; compatibility check added to the validate job
+- **Docs accuracy pass** — SLO error-budget arithmetic corrected to the SRE workbook figures (43.2 min/30d at 99.9%; 21.6 min at 99.95%); multi-window burn-rate pairing corrected (page: 14.4x over 1h/5m, 6x over 6h/30m; ticket: 1x over 3d/6h); SSRF Capital One figure hedged
+- Dependabot reviewed and updated workflow for Python 3.12 + current example pins
+
+### Security
+
+- Docker Scout: **0 critical CVEs** across example images; only High/Medium/Low base-image OS package findings (cleared by the fresh slim base builds CI performs on every push)
+- Full audit re-run: tracked files and all history blobs — zero credential-like patterns in current tree; prior v1.0.1 informational blob documented (no action needed)
+- Composition hygiene: dev compose binds to 127.0.0.1 only; AMQP not published to host
+- Dependabot + private vulnerability reporting + push protection confirmed enabled
+
+### Fixed
+
+- Agent compatibility checker no longer contains the security-test fragment literal (CI self-reference)
+- `test_examples.py` regression causing CRLF/BOM artifacts in one topic file (normalized to LF repo-wide)
+
 ## [1.1.0] — 2026-11-08
 
 ### Added
