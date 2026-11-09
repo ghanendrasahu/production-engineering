@@ -335,7 +335,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) · [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.m
 
 See [GitHub Milestones](https://github.com/ghanendrasahu/production-engineering/milestones) and the [Discussions](https://github.com/ghanendrasahu/production-engineering/discussions) planning threads. High level:
 
-- **v1.1.0** - live example verification (FastAPI + RabbitMQ runs with failure-path tests), all Dependabot PRs reviewed and merged, 22 broken reference URLs fixed, agent compatibility review, community readiness (shipped)
+- **v1.1.0** — live example verification (FastAPI + RabbitMQ), Dependabot PRs merged, 22 broken reference links fixed, agent compatibility review, community readiness (merged; consolidated into v1.2.0 — no separate tag was created)
 - **v1.2.0** — governance (branch protection), live Docker CI integration, agent compatibility suite, review matrix, DB resilience example (current)
 - **v2.0** — 112+ topics via proposal process · catalog listings · localization (de, hi, pt, es)
 

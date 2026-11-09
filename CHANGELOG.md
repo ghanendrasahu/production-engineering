@@ -33,6 +33,8 @@ All notable changes to this project are documented here. The format is based on 
 
 ## [1.1.0] — 2026-11-08
 
+_Note: v1.1.0's changes merged to main but no separate v1.1.0 tag was created; they are consolidated and released as v1.2.0._
+
 ### Added
 
 - **Live example verification**, executed on real infrastructure (no mocks): FastAPI example — startup, `/healthz` `/readyz`, metrics exposition, 422 validation paths, idempotent replay, trace header, graceful shutdown. RabbitMQ stack via Docker — publish 20 jobs (queue drains to 0), failing job dead-lettered after 5 redeliveries (quorum `x-delivery-limit`), malformed message dead-lettered immediately, container logs confirm acks-after-work. AI-agent orchestrator — 9/9 harness checks (budgets, kill switch, approval gates, tool failure, timeout, idempotency)
